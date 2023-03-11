@@ -1,0 +1,36 @@
+.item {
+  display: inline-block;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12),
+    0px 2px 4px rgba(0, 0, 0, 0.14);
+  border-radius: 4px;
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  &__img {
+    display: block;
+    max-height: 224px;
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+  }
+  &__box {
+    padding: 12px 16px;
+  }
+  &__name {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.15px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  &__species {
+    margin-top: 1px;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+  }
+}

@@ -1,0 +1,35 @@
+<div class="characters">
+  <div class="container">
+    <div class="characters__box">
+      <img
+        src="../../../assets/images/logo.png"
+        alt="Rick and Morty"
+        class="characters__logo"
+      />
+    </div>
+    <app-search></app-search>
+
+    <div class="characters__spinner" *ngIf="loading$ | async">
+      <app-spinner></app-spinner>
+    </div>
+
+    <div class="characters__list" *ngIf="charactersLength && !loading$.value">
+      <app-characters-item
+        [character]="item"
+        *ngFor="let item of characters"
+      ></app-characters-item>
+    </div>
+
+    <ng-container *ngIf="!charactersLength && !loading$.value">
+      <div class="characters__empty">Ooops... Nothing found</div>
+    </ng-container>
+
+    <app-paginator
+      class="characters__paginator"
+      [pageIndex]="pageIndex"
+      [length]="charactersLength"
+      [pageSize]="num"
+      (page)="changePage($event)"
+    ></app-paginator>
+  </div>
+</div>

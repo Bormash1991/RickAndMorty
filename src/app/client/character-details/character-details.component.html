@@ -1,0 +1,30 @@
+<header class="header">
+  <a class="header__back" routerLink="">
+    <svg class="header__arrow">
+      <use href="assets/sprite.svg#back-arrow"></use>
+    </svg>
+    <span class="header__back_text">GO BACK</span></a
+  >
+</header>
+<div class="details">
+  <div class="container">
+    <div class="details__spinner" *ngIf="loading$ | async">
+      <app-spinner></app-spinner>
+    </div>
+    <ng-container *ngIf="character">
+      <img
+        [src]="character.image"
+        [alt]="character.name"
+        class="details__img"
+      />
+      <h1 class="details__name">{{ character.name }}</h1>
+      <h2 class="details__subtitle">Informations</h2>
+      <ul class="details__list">
+        <li class="details__item" *ngFor="let item of dataForList">
+          <h4 class="details__item_title">{{ item.title }}</h4>
+          <div class="details__item_subtitle">{{ item.subtitle }}</div>
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+</div>

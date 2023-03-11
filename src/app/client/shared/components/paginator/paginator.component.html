@@ -1,0 +1,15 @@
+<div class="paginator">
+  <div class="paginator__label">{{ label }}</div>
+  <div class="paginator__box">
+    <button [class]="'paginator__btn ' + disableLeft" (click)="previousPage()">
+      <svg class="paginator__img">
+        <use href="assets/sprite.svg#arrow-left"></use>
+      </svg>
+    </button>
+    <button [class]="'paginator__btn ' + disableRight" (click)="nextPage()">
+      <svg class="paginator__img">
+        <use href="assets/sprite.svg#arrow-right"></use>
+      </svg>
+    </button>
+  </div>
+</div>
