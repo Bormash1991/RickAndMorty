@@ -5,25 +5,23 @@
   margin-right: auto;
   margin-left: auto;
 }
-@media (min-width: 576px) {
+@media (min-width: 360px) {
   .container {
-    padding-right: 15px;
-    padding-left: 15px;
-    width: 540px;
+    padding-right: 0px;
+    padding-left: 0px;
+    width: 320px;
   }
 }
 @media (min-width: 768px) {
   .container {
-    width: 720px;
+    width: 660px;
   }
 }
-@media (min-width: 992px) {
-  .container {
-    width: 960px;
-  }
-}
+
 @media (min-width: 1200px) {
   .container {
-    width: 1140px;
+    width: 1020px;
+    padding-right: 0px;
+    padding-left: 0px;
   }
 }
