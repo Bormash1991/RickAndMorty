@@ -1,70 +1,84 @@
 import { Injectable } from '@angular/core';
+import { TypeOfCharacter } from 'src/models/TypeOfCharacter.interface';
+import { TypeOfPaginatorEvent } from 'src/models/TypeOfPaginatorEvent.interface';
+import { SessionStorageService } from './session-storage.service';
+import { TypeOfFindDataReturn } from 'src/models/TypeOfFindDataReturn.interface';
+import { TypeOfChangePageReturn } from 'src/models/TypeOfChangePageReturn.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChangeDataService {
-  public products: any[] = [];
-  private productsSecond: any[] = [];
-  private allProductsAfterFilter: any[] = [];
-  private productsLength: number = 0;
-  private pageIndex: number =
-    0 || JSON.parse(sessionStorage.getItem('pageIndex') as string);
+  private characters: TypeOfCharacter[] = [];
+  private stateCharacters: TypeOfCharacter[] = [];
+  private charactersAfterFilter: TypeOfCharacter[] = [];
+  private charactersLength: number = 0;
+  private pageIndex: number = this.sessionStorageService.getData<number>(
+    'pageIndex',
+    0
+  );
   private num: number = 0;
   private check: boolean = true;
-  constructor() {}
-  setData(data: any[], num: number) {
-    data = data.sort(this.byField('name'));
-    this.products = data;
-    this.productsSecond = [...data];
-    this.allProductsAfterFilter = [...data];
-    this.productsLength = data.length;
+  constructor(private sessionStorageService: SessionStorageService) {}
+  setData(data: TypeOfCharacter[], num: number): TypeOfCharacter[] {
+    data.sort(this.byField('name'));
+    this.characters = data;
+    this.stateCharacters = [...data];
+    this.charactersAfterFilter = [...data];
+    this.charactersLength = data.length;
     this.num = num;
     this.firstPage();
-    return this.products;
+    return this.characters;
   }
-  findData(param: string) {
+  findData(param: string): TypeOfFindDataReturn {
     if (param) {
-      this.products = this.productsSecond.filter(
-        (character: any) =>
+      this.characters = this.stateCharacters.filter(
+        (character: TypeOfCharacter) =>
           character.name.toLowerCase().search(param.toLowerCase()) >= 0
       );
     } else {
-      this.products = this.productsSecond;
+      this.characters = this.stateCharacters;
     }
     if (this.check) {
       this.check = false;
     } else {
       this.pageIndex = 0;
     }
-    this.allProductsAfterFilter = [...this.products];
-    this.productsLength = this.products.length;
+    this.charactersAfterFilter = [...this.characters];
+    this.charactersLength = this.characters.length;
     this.firstPage();
-    sessionStorage.setItem('pageIndex', JSON.stringify(this.pageIndex));
-    return [this.products, this.productsLength, this.pageIndex];
+    this.sessionStorageService.setData<number>('pageIndex', this.pageIndex);
+    return {
+      charecters: this.characters,
+      charactersLength: this.charactersLength,
+      pageIndex: this.pageIndex,
+    };
   }
-  changePage(event: any) {
+  changePage(event: TypeOfPaginatorEvent): TypeOfChangePageReturn {
     let index = event.pageIndex;
     let lastIndex = event.previousPageIndex;
     if (index > lastIndex) {
-      this.products = this.allProductsAfterFilter.slice(
+      this.characters = this.charactersAfterFilter.slice(
         (lastIndex + 1) * this.num,
         (index + 1) * this.num
       );
       this.pageIndex++;
     }
     if (index < lastIndex) {
-      this.products = this.allProductsAfterFilter.slice(
+      this.characters = this.charactersAfterFilter.slice(
         index * this.num,
         lastIndex * this.num
       );
       this.pageIndex--;
     }
-    sessionStorage.setItem('pageIndex', JSON.stringify(this.pageIndex));
-    return [this.products, this.pageIndex];
+    this.sessionStorageService.setData<number>('pageIndex', this.pageIndex);
+    return {
+      charecters: this.characters,
+      pageIndex: this.pageIndex,
+    };
   }
   private firstPage() {
-    this.products = this.allProductsAfterFilter.slice(
+    this.characters = this.charactersAfterFilter.slice(
       this.pageIndex * this.num,
       (this.pageIndex + 1) * this.num
     );

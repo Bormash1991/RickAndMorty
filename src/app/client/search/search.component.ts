@@ -7,21 +7,22 @@ import {
   OnInit,
 } from '@angular/core';
 import { debounceTime, fromEvent, map } from 'rxjs';
-import { LoadingService } from '../shared/services/loading.service';
 import { SearchService } from '../shared/services/search.service';
+import { SessionStorageService } from '../shared/services/session-storage.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent implements AfterViewInit, OnInit {
+export class SearchComponent implements AfterViewInit {
   @ViewChild('search') searchInput!: ElementRef;
-  value: string = '';
-  constructor(private searchService: SearchService) {}
-  ngOnInit() {
-    this.value = JSON.parse(sessionStorage.getItem('search') as string);
-  }
+  value: string = this.sessionStorageService.getData<string>('search', '');
+  constructor(
+    private searchService: SearchService,
+    private sessionStorageService: SessionStorageService
+  ) {}
+
   ngAfterViewInit() {
     fromEvent(this.searchInput.nativeElement, 'input')
       .pipe(
@@ -30,7 +31,7 @@ export class SearchComponent implements AfterViewInit, OnInit {
       )
       .subscribe((data: string) => {
         this.searchService.setValue(data);
-        sessionStorage.setItem('search', JSON.stringify(data));
+        this.sessionStorageService.setData<string>('search', data);
       });
   }
 }

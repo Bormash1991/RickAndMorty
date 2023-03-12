@@ -11,6 +11,7 @@ import { SearchComponent } from './search/search.component';
 import { PaginatorComponent } from './shared/components/paginator/paginator.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     SearchComponent,
     PaginatorComponent,
     SpinnerComponent,
+    HeaderComponent,
   ],
   imports: [CommonModule, ClientRoutingModule, MatPaginatorModule, FormsModule],
 })

@@ -1,14 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GetDataService } from '../shared/services/get-data.service';
 import { BehaviorSubject, delay } from 'rxjs';
-import { LoadingService } from '../shared/services/loading.service';
 import { ChangeDataService } from '../shared/services/change-data.service';
 import { SearchService } from '../shared/services/search.service';
+import { TypeOfResponseAll } from 'src/models/TypeOfResponseAll.interface';
+import { TypeOfCharacter } from 'src/models/TypeOfCharacter.interface';
+import { TypeOfPaginatorEvent } from 'src/models/TypeOfPaginatorEvent.interface';
 
 @Component({
   selector: 'app-characters-list',
@@ -16,11 +13,11 @@ import { SearchService } from '../shared/services/search.service';
   styleUrls: ['./characters-list.component.scss'],
 })
 export class CharactersListComponent implements OnInit, OnDestroy {
-  characters: any[] = [];
-  charactersLength: number = 0;
-  pageIndex: number = 0;
-  num: number = 8;
-  loading$ = new BehaviorSubject<boolean>(true);
+  protected characters: TypeOfCharacter[] = [];
+  protected charactersLength: number = 0;
+  protected pageIndex: number = 0;
+  protected num: number = 8;
+  protected loading$ = new BehaviorSubject<boolean>(true);
   constructor(
     private getDataService: GetDataService,
     private changeDataService: ChangeDataService,
@@ -28,9 +25,9 @@ export class CharactersListComponent implements OnInit, OnDestroy {
   ) {}
   ngOnInit() {
     this.getDataService
-      .getAllcharacters()
+      .getAllcharacters<TypeOfResponseAll>()
       .pipe(delay(500))
-      .subscribe((data: any) => {
+      .subscribe((data) => {
         if (data.results) {
           this.characters = this.changeDataService.setData(
             data.results,
@@ -38,25 +35,26 @@ export class CharactersListComponent implements OnInit, OnDestroy {
           );
           this.charactersLength = data.results.length;
           this.loading$.next(false);
-          this.searchService.value$.subscribe((value: string) => {
+          this.searchService.getValue().subscribe((value: string) => {
             this.changeData(value);
           });
         }
       });
   }
   changeData(param: string) {
-    let arr = this.changeDataService.findData(param);
-    this.characters = arr[0] as any[];
-    this.charactersLength = arr[1] as number;
-    this.pageIndex = arr[2] as number;
+    let { charecters, charactersLength, pageIndex } =
+      this.changeDataService.findData(param);
+    this.characters = charecters;
+    this.charactersLength = charactersLength;
+    this.pageIndex = pageIndex;
   }
 
-  changePage(event: any) {
-    let arr = this.changeDataService.changePage(event);
-    this.characters = arr[0] as any[];
-    this.pageIndex = arr[1] as number;
+  changePage(event: TypeOfPaginatorEvent) {
+    let { charecters, pageIndex } = this.changeDataService.changePage(event);
+    this.characters = charecters;
+    this.pageIndex = pageIndex;
   }
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.changeDataService.changeCheck();
   }
 }

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { TypeOfCharacter } from 'src/models/TypeOfCharacter.interface';
 
 @Component({
   selector: 'app-characters-item',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./characters-item.component.scss'],
 })
 export class CharactersItemComponent {
-  @Input() character: any;
+  @Input() character!: TypeOfCharacter;
 }

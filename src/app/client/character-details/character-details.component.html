@@ -1,11 +1,4 @@
-<header class="header">
-  <a class="header__back" routerLink="">
-    <svg class="header__arrow">
-      <use href="assets/sprite.svg#back-arrow"></use>
-    </svg>
-    <span class="header__back_text">GO BACK</span></a
-  >
-</header>
+<app-header></app-header>
 <div class="details">
   <div class="container">
     <div class="details__spinner" *ngIf="loading$ | async">
@@ -20,9 +13,35 @@
       <h1 class="details__name">{{ character.name }}</h1>
       <h2 class="details__subtitle">Informations</h2>
       <ul class="details__list">
-        <li class="details__item" *ngFor="let item of dataForList">
-          <h4 class="details__item_title">{{ item.title }}</h4>
-          <div class="details__item_subtitle">{{ item.subtitle }}</div>
+        <li class="details__item">
+          <h4 class="details__item_title">Gender</h4>
+          <div class="details__item_subtitle">
+            {{ character.gender ? character.species : "unknown" }}
+          </div>
+        </li>
+        <li class="details__item">
+          <h4 class="details__item_title">Status</h4>
+          <div class="details__item_subtitle">
+            {{ character.status ? character.species : "unknown" }}
+          </div>
+        </li>
+        <li class="details__item">
+          <h4 class="details__item_title">Specie</h4>
+          <div class="details__item_subtitle">
+            {{ character.species ? character.species : "unknown" }}
+          </div>
+        </li>
+        <li class="details__item">
+          <h4 class="details__item_title">Origin</h4>
+          <div class="details__item_subtitle">
+            {{ character.origin.name ? character.origin.name : "unknown" }}
+          </div>
+        </li>
+        <li class="details__item">
+          <h4 class="details__item_title">Type</h4>
+          <div class="details__item_subtitle">
+            {{ character.type ? character.type : "unknown" }}
+          </div>
         </li>
       </ul>
     </ng-container>

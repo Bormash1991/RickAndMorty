@@ -7,17 +7,18 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { TypeOfPaginatorEvent } from 'src/models/TypeOfPaginatorEvent.interface';
 
 @Component({
   selector: 'app-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],
 })
-export class PaginatorComponent implements OnChanges, OnInit {
+export class PaginatorComponent implements OnChanges {
   @Input() pageIndex: number = 0;
   @Input() length: number = 0;
   @Input() pageSize: number = 0;
-  @Output() page = new EventEmitter();
+  @Output() page = new EventEmitter<TypeOfPaginatorEvent>();
   disableLeft: string = '';
   disableRight: string = '';
   label: string = '';
@@ -35,7 +36,6 @@ export class PaginatorComponent implements OnChanges, OnInit {
     } else if (this.length <= this.pageSize) {
       this.disableLeft = 'disable';
       this.disableRight = 'disable';
-      this.label = '1 of 1';
     }
   }
   changeLabel() {
