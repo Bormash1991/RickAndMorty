@@ -17,7 +17,10 @@ import { SessionStorageService } from '../shared/services/session-storage.servic
 })
 export class SearchComponent implements AfterViewInit {
   @ViewChild('search') searchInput!: ElementRef;
-  value: string = this.sessionStorageService.getData<string>('search', '');
+  protected value: string = this.sessionStorageService.getData<string>(
+    'search',
+    ''
+  );
   constructor(
     private searchService: SearchService,
     private sessionStorageService: SessionStorageService
