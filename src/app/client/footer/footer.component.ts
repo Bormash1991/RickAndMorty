@@ -46,6 +46,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
       this.hover = '';
     } else {
       this.activePopup = true;
+      this.hover = 'hide';
     }
   }
   logOut() {
@@ -59,7 +60,5 @@ export class FooterComponent implements OnInit, AfterViewInit {
     this.activePopup = false;
     this.hover = '';
   }
-  hideHover() {
-    this.hover = 'hide';
-  }
+ 
 }

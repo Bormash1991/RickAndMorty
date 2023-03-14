@@ -9,7 +9,7 @@
     >
       <img [src]="user.img" alt="user-logo" class="footer__img" />
       <span class="footer__name">{{ user.name }}</span>
-      <div class="footer__popup" *ngIf="activePopup" (mouseenter)="hideHover()">
+      <div class="footer__popup" *ngIf="activePopup">
         <button class="footer__popup_btn" (click)="logOut()">Log Out</button>
       </div>
     </button>
