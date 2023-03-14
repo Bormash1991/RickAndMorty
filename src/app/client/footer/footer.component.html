@@ -1,0 +1,17 @@
+<footer class="footer">
+  <div class="container">
+    <button [class]="'footer__btn ' + hideGoogle" id="auth"></button>
+    <button
+      *ngIf="user.img && user.name"
+      [class]="'footer__user ' + hover"
+      (click)="openPopup()"
+      (mouseleave)="popupClose()"
+    >
+      <img [src]="user.img" alt="user-logo" class="footer__img" />
+      <span class="footer__name">{{ user.name }}</span>
+      <div class="footer__popup" *ngIf="activePopup" (mouseenter)="hideHover()">
+        <button class="footer__popup_btn" (click)="logOut()">Log Out</button>
+      </div>
+    </button>
+  </div>
+</footer>

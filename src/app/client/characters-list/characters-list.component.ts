@@ -29,10 +29,7 @@ export class CharactersListComponent implements OnInit, OnDestroy {
       .pipe(delay(500))
       .subscribe((data) => {
         if (data.results) {
-          this.characters = this.changeDataService.setData(
-            data.results,
-            this.num
-          );
+          this.changeDataService.setData(data.results, this.num);
           this.charactersLength = data.results.length;
           this.loading$.next(false);
           this.searchService.getValue().subscribe((value: string) => {

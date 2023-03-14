@@ -1,0 +1,71 @@
+.footer {
+  padding: 0 0 40px 0;
+  &__btn {
+    border: none;
+    background-color: transparent;
+  }
+  &__user {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    &:hover {
+      background-color: #6e798c18;
+    }
+    &:active {
+      background-color: #6e798c2f;
+    }
+  }
+  &__img {
+    display: block;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }
+  &__name {
+    font-weight: 400;
+    font-size: 18px;
+  }
+  &__popup {
+    position: absolute;
+    bottom: 47px;
+    left: 0px;
+    background-color: rgb(243, 238, 238);
+    border-radius: 5px;
+    animation: show 250ms;
+    z-index: 20;
+    width: 120px;
+    &_btn {
+      display: block;
+      width: 100%;
+      border: none;
+      padding: 12px 15px;
+      border-radius: 5px;
+      font-weight: 400;
+      color: black;
+      transition: 150ms background-color;
+      text-align: left;
+      &:hover {
+        background-color: #a3a8a79f;
+      }
+    }
+  }
+}
+.hide {
+  background-color: transparent !important;
+}
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.hide-g {
+  display: none;
+}

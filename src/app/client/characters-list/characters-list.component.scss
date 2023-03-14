@@ -34,7 +34,7 @@
 @media (min-width: 360px) {
   .characters {
     padding-top: 86px;
-    padding-bottom: 188px;
+    padding-bottom: 100px;
     &__list {
       grid-template-columns: repeat(auto-fill, 320px);
     }
@@ -46,7 +46,6 @@
     &__list {
       grid-template-columns: repeat(auto-fill, 240px);
       gap: 24px 20px;
-
     }
   }
 }

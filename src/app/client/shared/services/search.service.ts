@@ -1,14 +1,15 @@
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { SessionStorageService } from './session-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
-  private value$ = new BehaviorSubject(
-    JSON.parse(sessionStorage.getItem('search') as string) || ''
+  private value$ = new BehaviorSubject<string>(
+    this.sessionStorageService.getData<string>('search', '')
   );
-  constructor() {}
+  constructor(private sessionStorageService: SessionStorageService) {}
   getValue() {
     return this.value$.asObservable();
   }
