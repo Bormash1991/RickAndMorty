@@ -39,7 +39,7 @@ export class CharactersListComponent implements OnInit, OnDestroy {
       });
   }
   changeData(param: string) {
-    let { charecters, charactersLength, pageIndex } =
+    const { charecters, charactersLength, pageIndex } =
       this.changeDataService.findData(param);
     this.characters = charecters;
     this.charactersLength = charactersLength;
@@ -47,7 +47,7 @@ export class CharactersListComponent implements OnInit, OnDestroy {
   }
 
   changePage(event: TypeOfPaginatorEvent) {
-    let { charecters, pageIndex } = this.changeDataService.changePage(event);
+    const { charecters, pageIndex } = this.changeDataService.changePage(event);
     this.characters = charecters;
     this.pageIndex = pageIndex;
   }
