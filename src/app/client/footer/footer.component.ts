@@ -33,11 +33,9 @@ export class FooterComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.authService.initAuthorization();
+    this.authService.renderGoogleBtn();
     if (!this.user.img && !this.user.name) {
-      this.authService.renderGoogleBtn();
       this.authService.renderGooglePrompt();
-    } else {
-      this.authService.renderGoogleBtn();
     }
   }
   openPopup() {
@@ -60,5 +58,4 @@ export class FooterComponent implements OnInit, AfterViewInit {
     this.activePopup = false;
     this.hover = '';
   }
- 
 }
