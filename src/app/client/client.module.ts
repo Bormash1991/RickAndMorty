@@ -6,7 +6,6 @@ import { ClientComponent } from './client.component';
 import { CharactersListComponent } from './characters-list/characters-list.component';
 import { CharactersItemComponent } from './characters-item/characters-item.component';
 import { CharacterDetailsComponent } from './character-details/character-details.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { SearchComponent } from './search/search.component';
 import { PaginatorComponent } from './shared/components/paginator/paginator.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
@@ -26,6 +25,6 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     FooterComponent,
   ],
-  imports: [CommonModule, ClientRoutingModule, MatPaginatorModule, FormsModule],
+  imports: [CommonModule, ClientRoutingModule, FormsModule],
 })
 export class ClientModule {}
