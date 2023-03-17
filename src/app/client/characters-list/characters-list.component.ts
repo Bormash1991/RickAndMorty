@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GetDataService } from '../shared/services/get-data.service';
-import { BehaviorSubject, delay } from 'rxjs';
+import { BehaviorSubject, Subscription, delay } from 'rxjs';
 import { ChangeDataService } from '../shared/services/change-data.service';
 import { SearchService } from '../shared/services/search.service';
 import { TypeOfResponseAll } from 'src/models/TypeOfResponseAll.interface';
@@ -18,6 +18,7 @@ export class CharactersListComponent implements OnInit, OnDestroy {
   protected pageIndex: number = 0;
   protected num: number = 8;
   protected loading$ = new BehaviorSubject<boolean>(true);
+  private searchSubj!: Subscription;
   constructor(
     private getDataService: GetDataService,
     private changeDataService: ChangeDataService,
@@ -32,9 +33,11 @@ export class CharactersListComponent implements OnInit, OnDestroy {
           this.changeDataService.setData(data.results, this.num);
           this.charactersLength = data.results.length;
           this.loading$.next(false);
-          this.searchService.getValue().subscribe((value: string) => {
-            this.changeData(value);
-          });
+          this.searchSubj = this.searchService
+            .getValue()
+            .subscribe((value: string) => {
+              this.changeData(value);
+            });
         }
       });
   }
@@ -53,5 +56,6 @@ export class CharactersListComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.changeDataService.changeCheck();
+    this.searchSubj.unsubscribe();
   }
 }
