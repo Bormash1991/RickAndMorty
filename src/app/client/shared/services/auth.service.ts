@@ -41,7 +41,7 @@ export class AuthService {
   renderGooglePrompt() {
     window.google.accounts.id.prompt();
   }
-  decodeTokenAndSave(item: CredentialResponse) {
+  private decodeTokenAndSave(item: CredentialResponse) {
     const decodedUser: TypeOfDecodedUser = jwtDecode(item.credential);
     const user: TypeOfUser = {
       img: decodedUser.picture,

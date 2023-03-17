@@ -46,7 +46,7 @@ export class FooterComponent implements OnInit, AfterViewInit, OnDestroy {
       this.authService.renderGooglePrompt();
     }
   }
-  openPopup() {
+  protected openPopup() {
     if (this.activePopup) {
       this.activePopup = false;
       this.hover = '';
@@ -55,14 +55,14 @@ export class FooterComponent implements OnInit, AfterViewInit, OnDestroy {
       this.hover = 'hide';
     }
   }
-  logOut() {
+  protected logOut() {
     this.sessionStorageService.deleteData('user');
     this.sessionStorageService.deleteData('token');
     this.popupClose();
     this.authService.setData(default_user);
   }
 
-  popupClose() {
+  protected popupClose() {
     this.activePopup = false;
     this.hover = '';
   }
