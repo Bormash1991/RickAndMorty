@@ -1,27 +1,49 @@
 # RickAndMorty
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.2.
+Deploy link https://bormash1991.github.io/RickAndMorty/
 
-## Development server
+## Installation
+1. Clone the repo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+	`git clone https://github.com/Bormash1991/RickAndMorty.git`
 
-## Code scaffolding
+2. Install NPM packages
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+	`npm install`
 
-## Build
+3. Run this command for a dev server
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+	`ng serve`
 
-## Running unit tests
+## About project 
+It was a test task for one company. Here you can see the characters from the cartoon and view them all with the pagination tool, and you can also filter the characters by name.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Among the interesting features, Google API has been added, which allows you to log in to your account through your Google account.
 
-## Running end-to-end tests
+### Built With
+- ![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- ![RxJS](https://img.shields.io/badge/rxjs-%23B7178C.svg?style=for-the-badge&logo=reactivex&logoColor=white)
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Usage
+
+### Main page
+Main page with characters and popup for authorization.
+
+[![main](https://github.com/Bormash1991/RickAndMorty/blob/main/demo-img/main-page.png?raw=true "main")](https://github.com/Bormash1991/RickAndMorty/blob/main/demo-img/main-page.png?raw=true "main")
+
+### Paginator and Google btn
+
+You can use the paginator to scroll through the list of characters, and you may also notice a Google btn that allows you to log into your account.
+
+By the way, the paginator is written manually without libraries.
+
+[![paginator](https://github.com/Bormash1991/RickAndMorty/blob/main/demo-img/paginator.png?raw=true "paginator")](https://github.com/Bormash1991/RickAndMorty/blob/main/demo-img/paginator.png?raw=true "paginator")
+
+### Char details
+
+This is the character details page.
+
+[![details](https://github.com/Bormash1991/RickAndMorty/blob/main/demo-img/char-details.png?raw=true "details")](https://github.com/Bormash1991/RickAndMorty/blob/main/demo-img/char-details.png?raw=true "details")
+
